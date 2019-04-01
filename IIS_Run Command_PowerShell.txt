@@ -1,0 +1,17 @@
+Set-ExecutionPolicy Unrestricted -Force
+
+# Install IIS and Web Management Tools
+Import-Module ServerManager
+install-windowsfeature web-server, web-webserver -IncludeAllSubFeature
+install-windowsfeature web-mgmt-tools
+
+# Remove default htm file
+Remove-item  C:\inetpub\wwwroot\iisstart.htm
+
+# Add a new htm file that displays server name
+Add-Content -Path "C:\inetpub\wwwroot\iisstart.htm" -Value $("Welcome to Azure VM Backup Demo. This Web Server Deployed using Run Command.")
+
+# DownloadPage from Github
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile("https://raw.githubusercontent.com/ahmadzahoory/awstemplate/master/mypage.html","C:\inetpub\wwwroot\mypage.html")
+
