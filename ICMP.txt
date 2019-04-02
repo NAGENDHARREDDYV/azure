@@ -1,0 +1,2 @@
+# Open a Windows PowerShell window with administrator privileges
+New-NetFirewallRule –DisplayName “Allow ICMPv4-In” –Protocol ICMPv4
